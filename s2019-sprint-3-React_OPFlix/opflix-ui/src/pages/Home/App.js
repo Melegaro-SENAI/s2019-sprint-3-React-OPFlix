@@ -1,8 +1,9 @@
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
 
 import { Link } from "react-router-dom";
+
+import {  } from "module";
 
 function App() {
   return (
@@ -57,13 +58,27 @@ function App() {
             </nav>
           </div>
         </section>
-        </main>
 
+        <section>
+          <div className="contact-section">
+            <div className="inner-width">
+              <h1>Entre em contato conosco</h1>
+              <input type="text" className="name" placeholder="Your Name"/>
+              <input type="text" className="email" placeholder="your email"/>
+              <textarea rows="1" placeholder="Mensagem" class="mensagem"></textarea>
+              <button>Enviar</button>
+            </div>
+          </div>
+        </section>
+        
+        </main>
         <footer className="rodapePrincipal">
           <section className="rodapePrincipal">
-            <p>(11)99999-9999</p>
-            <p>Av.Paulista, 3293</p>
-            <p>São Paulo - SP</p>
+            <div className="container">
+              <p>(11)99999-9999</p>
+              <p>Av.Paulista, 3293</p>
+              <p>São Paulo - SP</p>
+            </div>
           </section>
         </footer>
     </div>    

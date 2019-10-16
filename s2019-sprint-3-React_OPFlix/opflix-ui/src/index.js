@@ -4,10 +4,10 @@ import './index.css';
 
 // pages
 import App from './pages/Home/App';
-import Plataformas from './pages/Plataformas/Plataformas';
 import Lancamentos from './pages/Lancamentos/Lancamentos';
-import Login from './pages/Login/Login';
 import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado';
+import Login from './pages/Login/Login';
+import Plataformas from './pages/Plataformas/Plataformas';
 
 // routes
 import { Route, Link, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
@@ -22,7 +22,7 @@ const routing = (
                 <Route path='/plataformas' component={Plataformas} />
                 <Route path='/lancamentos' component={Lancamentos} />
                 <Route path='/login' component={Login} />
-                <Route component={NaoEncontrado} />
+                <Route component={NaoEncontrado}/>
             </Switch>
         </div>
     </Router>

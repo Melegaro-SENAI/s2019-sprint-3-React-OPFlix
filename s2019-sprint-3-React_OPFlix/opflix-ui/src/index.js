@@ -14,13 +14,28 @@ import { Route, Link, BrowserRouter as Router, Switch, Redirect } from "react-ro
 
 import * as serviceWorker from './serviceWorker';
 
+const RotaPrivada = ({component: Component}) => (
+    <Route
+        render={ props =>
+            localStorage.getItem("usuario-opflix") !== null  ?
+            (
+                <Component {...props}/>
+            ) : (
+                <Redirect
+                    to={{pathname: "/login", state: {from: props.location}}}
+                />
+            )
+        }
+    />
+)
+
 const routing = (
     <Router>
         <div>
             <Switch>
                 <Route exact path='/' component={App} />
-                <Route path='/plataformas' component={Plataformas} />
-                <Route path='/lancamentos' component={Lancamentos} />
+                <RotaPrivada path='/plataformas' component={Plataformas} />
+                <Rota Privada path='/lancamentos' component={Lancamentos} />
                 <Route path='/login' component={Login} />
                 <Route component={NaoEncontrado}/>
             </Switch>

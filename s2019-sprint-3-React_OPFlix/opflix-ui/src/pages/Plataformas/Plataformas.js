@@ -85,13 +85,19 @@ class Plataformas extends Component{
 
                 <main className="conteudoPrincipal">
                     <section className="conteudoPrincipal-cadastro"></section>
-                    <h1 className="conteudoPrincipal-cadastro-titulo">Plataformas</h1>
+                    <h1 className="conteudoPrincipal-cadastro-titulo">Plataformas disponíveis</h1>
                     <div className="container" id="conteudoPrincipal-plataformas"></div>
+                        <h1>Amazon</h1>
                         <img src={amazon} />
+                        <h1>Netflix</h1>
                         <img src={netflix} />                
-                        <img src={googleplayfilmes} />                
-                        <img src={vizer} />                
-                        <img src={youtube} />                                
+                        <h1>Google Play Filmes</h1>
+                        <img src={googleplayfilmes} />             
+                        <h1>Vizer</h1>
+                        <img src={vizer} />     
+                        <h1>Youtube</h1>
+                        <img src={youtube} />   
+                            
                 </main>
             </div>
         )

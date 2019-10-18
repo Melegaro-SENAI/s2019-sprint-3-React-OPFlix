@@ -2,18 +2,15 @@ import React, { Component } from "react";
 
 import Axios from 'axios';
 
-class Login extends Component {
+export default class Login extends Component {
+    
     constructor() {
         super();
         this.state = {
-            nome: "",
             email: "",
-            senha: ""
+            senha: "",
+            erro: ""
         }
-    }
-
-    mudarEstadoNome = (event) =>{
-        this.setState({nome: event.target.value})
     }
 
     mudarEstadoEmail = (event) =>{
@@ -27,8 +24,7 @@ class Login extends Component {
     efetuarLogin = (event)=> {
         event.PreventDefault();
 
-        Axios.post("http://192.168.3.47/api/login", {
-            nome: this.state.nome,
+        Axios.post("http://192.168.3.47:5000/api/login", {
             email: this.state.email,
             senha: this.state.senha
         })
@@ -37,32 +33,28 @@ class Login extends Component {
                     // console.log(data.data);
                     // console.log(data.data.token);
                     localStorage.setItem("usuario-opflix", data.data.token);
-                    this.props.history.push('/home');
+                    this.props.history.push('/lancamentos');
                 }else{
-                    console.log("Erroooooou!")
+                    console.log("Erroooou!")
                 }
             })
             .catch(erro => {
                 this.setState({erro: "Usuario ou senha inválido"});
-                console.log(erro)
+                console.log(erro);
             })
     }
 
-}
-render() {
-    return (
-        <section className="container flex">
-            <div className="img_login"></div>
-            <div className="img_overplay"></div>
-        <div className="item_login">
-                <div className="row">
-                    <div className="item">
+    render() {
+        return (
+            <section className="container flex">
+                <div className="img_login"></div>
+                <div className="img_overplay"></div>
+            <div className="item_login">
+                    <div className="row">
+                        <div className="item">
                        
                     </div>
                     <div className="item" id="item_title">
-                        <p className="text__login" id="item__description">
-                            Logue para acessar sua conta
-                    </p>
                     </div>
                     <form onSubmit={this.efetuarLogin}>
                         <div className="item">
@@ -102,6 +94,6 @@ render() {
                 </div>
             </div>
         </section>
-    )
+        );
+    }
 }
-export default Login;

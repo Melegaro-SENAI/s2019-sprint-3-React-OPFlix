@@ -7,7 +7,7 @@ import App from './pages/Home/App';
 import Lancamentos from './pages/Lancamentos/Lancamentos';
 import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado';
 import Login from './pages/Login/Login';
-import Plataformas from './pages/Plataformas/Plataformas';
+import Categorias from './pages/Categorias/Categorias';
 
 // routes
 import { Route, Link, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
@@ -22,7 +22,7 @@ const RotaPrivada = ({component: Component}) => (
                 <Component {...props}/>
             ) : (
                 <Redirect
-                    to={{pathname: "/login", state: {from: props.location}}}
+                    to={{pathname: "/categorias", state: {from: props.location}}}
                 />
             )
         }
@@ -34,9 +34,10 @@ const routing = (
         <div>
             <Switch>
                 <Route exact path='/' component={App} />
-                <RotaPrivada path='/plataformas' component={Plataformas} />
-                <Rota Privada path='/lancamentos' component={Lancamentos} />
+                <RotaPrivada path='/categorias' component={Categorias} />
+                <RotaPrivada path='/lancamentos' component={Lancamentos} />
                 <Route path='/login' component={Login} />
+                {/* <Route path='/cadastro' component={Cadastro} /> */}
                 <Route component={NaoEncontrado}/>
             </Switch>
         </div>

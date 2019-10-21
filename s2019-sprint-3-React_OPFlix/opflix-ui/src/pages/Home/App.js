@@ -3,8 +3,6 @@ import './App.css';
 
 import { Link } from "react-router-dom";
 
-import {  } from "module";
-
 function App() {
   return (
     <div className="App">
@@ -14,9 +12,10 @@ function App() {
             
             <nav className="cabecalhoPrincipal-nav">
               <Link to='/'>Home</Link>
-              <Link to='/plataformas'>Plataformas</Link>
+              <Link to='/categorias'>Categorias</Link>
               <Link to='/lancamentos'>Lançamentos</Link>
-              <Link className="cabecalhoPrincipal-nav-login" to="/login">Login</Link>                
+              <Link to='/login'>Login</Link>   
+              <Link to='/cadastro'>Cadastrar</Link>
             </nav>
           </div>
         </header>

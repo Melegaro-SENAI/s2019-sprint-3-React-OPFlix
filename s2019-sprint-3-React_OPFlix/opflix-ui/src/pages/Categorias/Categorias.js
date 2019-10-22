@@ -2,7 +2,7 @@ import React,{Component} from "react";
 
 import Rodape from "../../components/Rodape";
 
-export default class Categorias extends Component{
+class Categorias extends Component{
 
     constructor(){
         super();
@@ -23,7 +23,7 @@ export default class Categorias extends Component{
     }
 
     listarCategoria = () =>{
-        fetch('http://localhost:5000/api/categoria')
+        fetch('http://localhost:5000/api/Categoria')
             .then(response => response.json())
             .then(data => this.setState({lista: data}));
     }
@@ -31,15 +31,10 @@ export default class Categorias extends Component{
     cadastrarCategoria = (event) =>{
         event.preventDefault();
 
-        var config = {
-            headers: { 'Authorization': "bearer " + localStorage.getItem("usuario-opflix") }
-          };
-
-        fetch('http://localhost:5000/api/categoria',{
+        fetch('http://localhost:5000/api/Categoria',{
             method: "POST",
             body: JSON.stringify({ nome: this.state.nome }),
             headers: {
-                config, 
                 "Content-Type": "application/json"
             }
         })
@@ -94,7 +89,13 @@ export default class Categorias extends Component{
                         </h2>
                         <form onSubmit={this.cadastrarCategoria}>
                         <div className="container">
-                            <input type="text" className="className__categoria" id="input__categoria" placeholder="Nome da Categoria" value={this.state.nome} onChange={this.nomeCategoria}
+                            <input 
+                            type="text"
+                            className="className__categoria" 
+                            id="input__categoria" 
+                            placeholder="Nome da Categoria" 
+                            value={this.state.nome} 
+                            onChange={this.nomeCategoria}
                             />
                             <button
                             id="btn__cadastrar"
@@ -115,3 +116,5 @@ export default class Categorias extends Component{
         );
     }
 }
+
+export default Categorias;

@@ -1,13 +1,50 @@
 import React,{Component} from "react";
 
-//imagem
-import it from '../../assets/img/5320567.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg';
+import Rodape from "../../components/Rodape";
 
 class Lancamentos extends Component{
-    render() {
+
+    constructor(){
+        super();
+        this.state = {
+            lista: [],
+            nome: ""
+        }
+    }
+
+    componentDidMount(){
+        this.listarLancamentos();
+    }
+
+    listarLancamentos = () =>{
+        fetch('http://localhost:5000/api/Categoria')
+            .then(response => response.json())
+            .then(data => this.setState({lista: data}));
+    }
+
+    cadastrarLancamentos = (event) =>{
+        event.preventDefault();
+
+        fetch('http://localhost:5000/api/Categoria',{
+            method: "POST",
+            body: JSON.stringify({ nome: this.state.nome }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => this.listarLancamentos())
+            .catch(erro => console.log(erro));
+    }
+
+    nomeLancamentos = (event) =>{
+        this.setState({nome: event.target.value});
+        console.log(this.state);
+    }    
+
+    render(){
         return(
             <div>
-                <header className="cabecalhoPrincipal">
+                <header className="conteudoPrincipal">
                     <div className="container">
 
                     <nav className="cabecalhoPrincipal-nav">
@@ -16,28 +53,61 @@ class Lancamentos extends Component{
                     </div>
                 </header>
 
-                <section class="lancamentosFilmes" >
-                    <div>
-                        <h1>Filmes</h1>
-                        <h2>Comédia</h2>
-                        <img src={it} />
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, sunt in eveniet beatae fugit officiis? Pariatur aspernatur iure porro, iste eveniet recusandae quaerat maxime qui eos amet, est, nisi provident! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit pariatur, sint odio soluta voluptate culpa eaque. Aperiam sunt quisquam inventore sequi, ut tenetur consequatur provident, natus cum velit tempore doloremque.</p> 
-                        <h2>Drama</h2>
-                        <img src={it} />
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, sunt in eveniet beatae fugit officiis? Pariatur aspernatur iure porro, iste eveniet recusandae quaerat maxime qui eos amet, est, nisi provident! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit pariatur, sint odio soluta voluptate culpa eaque. Aperiam sunt quisquam inventore sequi, ut tenetur consequatur provident, natus cum velit tempore doloremque.</p> 
-                        <h2>Ficção científica</h2>
-                        <img src={it} />
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, sunt in eveniet beatae fugit officiis? Pariatur aspernatur iure porro, iste eveniet recusandae quaerat maxime qui eos amet, est, nisi provident! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit pariatur, sint odio soluta voluptate culpa eaque. Aperiam sunt quisquam inventore sequi, ut tenetur consequatur provident, natus cum velit tempore doloremque.</p> 
-                        <h2>Ação</h2>
-                        <img src={it} />
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, sunt in eveniet beatae fugit officiis? Pariatur aspernatur iure porro, iste eveniet recusandae quaerat maxime qui eos amet, est, nisi provident! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit pariatur, sint odio soluta voluptate culpa eaque. Aperiam sunt quisquam inventore sequi, ut tenetur consequatur provident, natus cum velit tempore doloremque.</p> 
-                        <h2>Terror</h2>
-                        <img src={it} />
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, sunt in eveniet beatae fugit officiis? Pariatur aspernatur iure porro, iste eveniet recusandae quaerat maxime qui eos amet, est, nisi provident! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit pariatur, sint odio soluta voluptate culpa eaque. Aperiam sunt quisquam inventore sequi, ut tenetur consequatur provident, natus cum velit tempore doloremque.</p> 
+                <main className="conteudoPrincipal">
+                    <section className="conteudoPrincipal-cadastro">
+                    <h1 className="conteudoPrincipal-cadastro-titulo">Categorias</h1>
+                    <div className="container" id="conteudoPrincipal-plataformas">
+                        <table id="tabela-lista">
+                        <thead>
+                            <tr>
+                                <th>Lancamentos</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabela-lista-corpo">
+                            {this.state.lista.map(element =>{
+                                return(
+                                    <tr key={element.idLancamentos}>
+                                        <td>{element.idLancamentos}</td>
+                                        <td>{element.nome}</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                        </table>
                     </div>
-                </section>
-            </div>
-        )
+
+                    <div className="container" id="conteudoPrincipal-cadastro">
+                        <h2 className="conteudoPrincipal-cadastro-titulo">
+                        Cadastrar Lancamentos
+                        </h2>
+                        <form onSubmit={this.cadastrarLancamentos}>
+                        <div className="container">
+                            <input 
+                            type="text"
+                            className="className__lancamentos" 
+                            id="input__lancamentos" 
+                            placeholder="Nome do Lancamento" 
+                            value={this.state.nome} 
+                            onChange={this.nomeLancamento}
+                            />
+                            <button
+                            id="btn__cadastrar"
+                            className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro"
+                            
+                            >
+                            Cadastrar
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                    </section>
+                </main>
+
+                <Rodape />
+
+                </div>
+        );
     }
 }
 

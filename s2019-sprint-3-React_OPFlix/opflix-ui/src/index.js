@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import * as serviceWorker from './serviceWorker';
 
 // pages
 import App from './pages/Home/App';
@@ -8,11 +9,10 @@ import Lancamentos from './pages/Lancamentos/Lancamentos';
 import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado';
 import Login from './pages/Login/Login';
 import Categorias from './pages/Categorias/Categorias';
+import Cadastro from './pages/Cadastro/Cadastro';
 
 // routes
-import { Route, Link, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-
-import * as serviceWorker from './serviceWorker';
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
 const RotaPrivada = ({component: Component}) => (
     <Route
@@ -27,21 +27,20 @@ const RotaPrivada = ({component: Component}) => (
             )
         }
     />
-)
+);
+
 
 const routing = (
-    <Router>
-        <div>
-            <Switch>
-                <Route exact path='/' component={App} />
-                <RotaPrivada path='/categorias' component={Categorias} />
-                <RotaPrivada path='/lancamentos' component={Lancamentos} />
-                <Route path='/login' component={Login} />
-                {/* <Route path='/cadastro' component={Cadastro} /> */}
-                <Route component={NaoEncontrado}/>
-            </Switch>
-        </div>
-    </Router>
+    <BrowserRouter>
+        <Switch>
+            <Route exact path='/' component={App} />
+            <RotaPrivada path='/categorias' component={Categorias} />
+            <Route path='/lancamentos' component={Lancamentos} />
+            <Route path='/login' component={Login} />
+            <Route path='/cadastro' component={Cadastro} />
+            <Route component={NaoEncontrado}/>
+        </Switch>
+    </BrowserRouter>
 )
 
 ReactDOM.render(routing, document.getElementById('root'));

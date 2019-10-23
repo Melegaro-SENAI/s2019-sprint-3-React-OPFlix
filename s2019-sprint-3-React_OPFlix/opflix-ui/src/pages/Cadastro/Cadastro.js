@@ -16,78 +16,74 @@ export default class Cadastro extends Component {
     cadastrarEstadoNome = (event) =>{
         this.setState({nome: event.target.value})
     }
-
     
     cadastrarEstadoEmail = (event) =>{
         this.setState({email: event.target.value})
     }
 
-    
     cadastrarEstadoSenha = (event) =>{
         this.setState({senha: event.target.value})
     }
 
     efetuarCadastro = (event) =>{
         event.preventDefault();
-
-        Axios.post("")
     }
 
     render(){
         return(
             <section className="container flex">
-                <div className="img__login"></div>
-                <div className="img__overplay"></div>
+                <div className="img_login"></div>
+                <div className="img_overplay"></div>
 
-                <div className="item__login">
+                <div className="body">
                     <div className="row">
-                        <div className="item">
+                        <div className="body">
 
                         </div>
-                        <div className="item" id="item__title">
-                            <p className="text__login" id="item__description">
-                                Cadastre-se para fazer login em sua conta.
+                        <div className="titulo__login" id="titulo">
+                        </div>
+                        <form onSubmit={this.efetuarLogin}>
+                            <div className="box">
+                            <h1>Login</h1>
+                                <input
+                                    className="input__login"
+                                    placeholder="username"
+                                    type="text"
+                                    name="nome"
+                                    id="login__nome"
+                                    onChange={this.cadastrarEstadoNome}
+                                />    
+                                <input
+                                    className="input__login"
+                                    placeholder="email"
+                                    type="text"
+                                    name="email"
+                                    id="login__email"
+                                    onChange={this.cadastrarEstadoEmail}
+                                    value={this.state.email}
+                                    />
+                                <input
+                                    className="input__login"
+                                    placeholder="password"
+                                    type="password"
+                                    name="password"
+                                    id="login__password"
+                                    onChange={this.cadastrarEstadoSenha}
+                                    value={this.state.senha}
+                                    />
+                                <input
+                                    className="input__login"
+                                    type="submit"
+                                    name=""
+                                    value="Login">
+                                </input>
+                        </div>
+                            <p
+                                className="text__login"
+                                style={{ color: "red", textAlign: "center" }}
+                                >
+                                {this.state.erro}
                             </p>
-                        </div>
-                        <form onSubmit={this.efetuarCadastro}>
-                            <div className="item">
-                            <input
-                                className="item__login"
-                                placeholder="username"
-                                type="text"
-                                name="username"
-                                id="login__nome"
-                                onChange={this.cadastrarEstadoNome}
-                                value={this.state.nome}
-                            />
-                        </div>
-                        <div className="item">
-                            <input
-                                className="input__cadastro"
-                                placeholder="email"
-                                type="email"
-                                name="email"
-                                id="login__email"
-                                onChange={this.cadastrarEstadoEmail}
-                                value={this.state.email}
-                            />
-                        </div>
-                        <div className="item">
-                            <input
-                                className="input__cadastro"
-                                placeholder="senha"
-                                type="text"
-                                name="senha"
-                                id="login__email"
-                                onChange={this.cadastrarEstadoSenha}
-                                value={this.state.senha}
-                            />
-                        </div>
-                        <div className="item">
-                            <button className="btn btn__login" id="btn__login">
-                                Cadastrar
-                            </button>
-                        </div>
                         </form>
                     </div>
                 </div>

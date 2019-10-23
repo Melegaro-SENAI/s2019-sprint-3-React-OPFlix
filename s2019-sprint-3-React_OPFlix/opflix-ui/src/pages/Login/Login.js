@@ -54,15 +54,16 @@ export default class Login extends Component {
                 <div className="img_login"></div>
                 <div className="img_overplay"></div>
 
-                <div className="item_login">
+                <div className="body">
                     <div className="row">
-                        <div className="item">
+                        <div className="body">
 
                         </div>
-                        <div className="item" id="item_title">
+                        <div className="titulo__login" id="titulo">
                         </div>
                         <form onSubmit={this.efetuarLogin}>
-                            <div className="item">
+                            <div className="box">
+                            <h1>Login</h1>
                                 <input
                                     className="input__login"
                                     placeholder="username"
@@ -71,9 +72,7 @@ export default class Login extends Component {
                                     id="login__email"
                                     onChange={this.mudarEstadoEmail}
                                     value={this.state.email}
-                                />
-                            </div>
-                            <div className="item">
+                                    />
                                 <input
                                     className="input__login"
                                     placeholder="password"
@@ -82,20 +81,21 @@ export default class Login extends Component {
                                     id="login__password"
                                     onChange={this.mudarEstadoSenha}
                                     value={this.state.senha}
-                                />
-                            </div>
-                            <div className="item">
-                                <button className="btn btn__login" id="btn__login" onClick={this.efetuarLogin}>
-                                    Login
-                            </button>
-                            </div>
+                                    />
+                                <input
+                                    className="input__login"
+                                    type="submit"
+                                    name=""
+                                    value="Login">
+                                </input>
+                        </div>
                             <p
                                 className="text__login"
                                 style={{ color: "red", textAlign: "center" }}
-                            >
+                                >
                                 {this.state.erro}
                             </p>
-                        </form>
+                                </form>
                     </div>
                 </div>
             </section>

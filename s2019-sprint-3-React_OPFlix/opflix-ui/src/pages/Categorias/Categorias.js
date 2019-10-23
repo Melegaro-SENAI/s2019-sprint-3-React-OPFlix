@@ -35,7 +35,8 @@ class Categorias extends Component{
             method: "POST",
             body: JSON.stringify({ nome: this.state.nome }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "Bearer "+ localStorage.getItem("usuario-opflix")
             }
         })
             .then(response => this.listarCategoria())

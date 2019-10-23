@@ -17,7 +17,7 @@ class Lancamentos extends Component{
     }
 
     listarLancamentos = () =>{
-        fetch('http://localhost:5000/api/Categoria')
+        fetch('http://localhost:5000/api/Lancamento')
             .then(response => response.json())
             .then(data => this.setState({lista: data}));
     }
@@ -25,11 +25,12 @@ class Lancamentos extends Component{
     cadastrarLancamentos = (event) =>{
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/Categoria',{
+        fetch('http://localhost:5000/api/Lancamento',{
             method: "POST",
             body: JSON.stringify({ nome: this.state.nome }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "Bearer "+ localStorage.getItem("usuario-opflix")
             }
         })
             .then(response => this.listarLancamentos())
@@ -55,12 +56,16 @@ class Lancamentos extends Component{
 
                 <main className="conteudoPrincipal">
                     <section className="conteudoPrincipal-cadastro">
-                    <h1 className="conteudoPrincipal-cadastro-titulo">Categorias</h1>
+                    <h1 className="conteudoPrincipal-cadastro-titulo">Lancamento</h1>
                     <div className="container" id="conteudoPrincipal-plataformas">
                         <table id="tabela-lista">
                         <thead>
                             <tr>
-                                <th>Lancamentos</th>
+                                <th>Lançamento</th>
+                                <th>Descrição</th>
+                                <th>Data de Lançamento</th>
+                                <th>Categoria</th>
+                                <th>Idade Recomendada</th>
                             </tr>
                         </thead>
 
@@ -83,6 +88,38 @@ class Lancamentos extends Component{
                         </h2>
                         <form onSubmit={this.cadastrarLancamentos}>
                         <div className="container">
+                            <input 
+                            type="text"
+                            className="className__lancamentos" 
+                            id="input__lancamentos" 
+                            placeholder="Lançamento" 
+                            value={this.state.nome} 
+                            onChange={this.nomeLancamento}
+                            />
+                            <input 
+                            type="text"
+                            className="className__lancamentos" 
+                            id="input__lancamentos" 
+                            placeholder="Nome do Lancamento" 
+                            value={this.state.nome} 
+                            onChange={this.nomeLancamento}
+                            />
+                            <input 
+                            type="text"
+                            className="className__lancamentos" 
+                            id="input__lancamentos" 
+                            placeholder="Nome do Lancamento" 
+                            value={this.state.nome} 
+                            onChange={this.nomeLancamento}
+                            />
+                            <input 
+                            type="text"
+                            className="className__lancamentos" 
+                            id="input__lancamentos" 
+                            placeholder="Nome do Lancamento" 
+                            value={this.state.nome} 
+                            onChange={this.nomeLancamento}
+                            />
                             <input 
                             type="text"
                             className="className__lancamentos" 
